@@ -9,11 +9,10 @@
 
 USING_NS_CC;
 
-int main(int argc, char **argv)
-{
-    // create the application instance
-    AppDelegate app;
-    EGLView* eglView = EGLView::getInstance();
-    eglView->setFrameSize(800, 480);
-    return Application::getInstance()->run();
+int main(int argc, char **argv) {
+	// create the application instance
+	AppDelegate app;
+	CCEGLView* eglView = CCEGLView::sharedOpenGLView();
+	eglView->setFrameSize(800, 480);
+	return CCApplication::sharedApplication()->run();
 }

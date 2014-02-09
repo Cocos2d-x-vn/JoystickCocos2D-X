@@ -14,10 +14,10 @@ public:
 
     Player();
     virtual ~Player();
-    virtual bool init(cocos2d::Layer *layer, b2World *world);
+    virtual bool init(cocos2d::CCLayer *layer, b2World *world);
     void update(float dt);
-    void updateVelocity(cocos2d::Point velocity);
-    void move(cocos2d::Point velocity);
+    void updateVelocity(cocos2d::CCPoint velocity);
+    void move(cocos2d::CCPoint velocity);
     void stopMoving();
     void actionButtonPressed(int button);
     

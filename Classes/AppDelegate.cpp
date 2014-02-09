@@ -1,75 +1,54 @@
 #include "AppDelegate.h"
-#include "Stages/StageScene1.h"
+#include "Stages/StageScene.h"
 
 USING_NS_CC;
 
-AppDelegate::AppDelegate()
-{
+AppDelegate::AppDelegate() {
 }
 
-AppDelegate::~AppDelegate() 
-{
+AppDelegate::~AppDelegate() {
 }
 
-bool AppDelegate::applicationDidFinishLaunching()
-{    
-    // initialize director
-    Director* director = Director::getInstance();
-    EGLView* eglView = EGLView::getInstance();
+bool AppDelegate::applicationDidFinishLaunching() {
+	// initialize director
+	CCDirector* director = CCDirector::sharedDirector();
+	CCEGLView* eglView = CCEGLView::sharedOpenGLView();
 
-    director->setOpenGLView(eglView);
+	director->setOpenGLView(eglView);
 
-	// resources setup
-    eglView->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::SHOW_ALL);
-	
-    Size frameSize = eglView->getFrameSize();
-    
-    if (frameSize.height > resTablet.size.height)
-    {
-        FileUtils::getInstance()->addSearchPath(resTabletRetina.directory);
-    }
-    else if (frameSize.height > resPhoneRetina.size.height)
-    {
-        FileUtils::getInstance()->addSearchPath(resTablet.directory);
-    }
-    else if (frameSize.height > resPhone.size.height)
-    {
-        FileUtils::getInstance()->addSearchPath(resPhoneRetina.directory);
-    }
-    else
-    {
-        FileUtils::getInstance()->addSearchPath(resPhone.directory);
-    }
-    
-    // turn on display FPS
-    director->setDisplayStats(false);
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
+	eglView->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, kResolutionShowAll);
+#else
+	eglView->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, kResolutionNoBorder);
+#endif
 
-    // set FPS. the default value is 1.0/60 if you don't call this
-    director->setAnimationInterval(1.0 / 60);
+	// turn on display FPS
+	director->setDisplayStats(false);
 
-    // create a scene. it's an autorelease object
-    Scene *scene = StageScene1::scene();
+	// set FPS. the default value is 1.0/60 if you don't call this
+	director->setAnimationInterval(1.0 / 60);
 
-    // run
-    director->runWithScene(scene);
+	// create a scene. it's an autorelease object
+	CCScene *scene = StageScene::scene();
 
-    return true;
+	// run
+	director->runWithScene(scene);
+
+	return true;
 }
 
 // This function will be called when the app is inactive. When comes a phone call,it's be invoked too
-void AppDelegate::applicationDidEnterBackground()
-{
-    Director::getInstance()->stopAnimation();
+void AppDelegate::applicationDidEnterBackground() {
+	CCDirector::sharedDirector()->stopAnimation();
 
-    // if you use SimpleAudioEngine, it must be pause
-    // SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
+	// if you use SimpleAudioEngine, it must be pause
+	// SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
 }
 
 // this function will be called when the app is active again
-void AppDelegate::applicationWillEnterForeground()
-{
-    Director::getInstance()->startAnimation();
+void AppDelegate::applicationWillEnterForeground() {
+	CCDirector::sharedDirector()->startAnimation();
 
-    // if you use SimpleAudioEngine, it must resume here
-    // SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
+	// if you use SimpleAudioEngine, it must resume here
+	// SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
 }

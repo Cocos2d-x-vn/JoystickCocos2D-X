@@ -2,30 +2,24 @@
 
 using namespace cocos2d;
 
-SneakyButtonSkinnedBase::~SneakyButtonSkinnedBase()
-{
-	if (defaultSprite)
-	{
+SneakyButtonSkinnedBase::~SneakyButtonSkinnedBase() {
+	if (defaultSprite) {
 		defaultSprite->release();
 		defaultSprite = NULL;
 	}
-	if (activatedSprite)
-	{
+	if (activatedSprite) {
 		activatedSprite->release();
 		activatedSprite = NULL;
 	}
-	if (disabledSprite)
-	{
+	if (disabledSprite) {
 		disabledSprite->release();
 		disabledSprite = NULL;
 	}
-	if (pressSprite)
-	{
+	if (pressSprite) {
 		pressSprite->release();
 		pressSprite = NULL;
 	}
-	if (button)
-	{
+	if (button) {
 		button->release();
 		button = NULL;
 	}
@@ -34,7 +28,7 @@ SneakyButtonSkinnedBase::~SneakyButtonSkinnedBase()
 bool SneakyButtonSkinnedBase::init() //Possible errors here
 {
 	bool pRet = false;
-	if(CCLayer::init()){
+	if (CCLayer::init()) {
 		this->defaultSprite = NULL;
 		//defaultSprite->retain();
 		this->activatedSprite = NULL;
@@ -53,120 +47,110 @@ bool SneakyButtonSkinnedBase::init() //Possible errors here
 }
 
 void SneakyButtonSkinnedBase::watchSelf(float delta) //Be Careful Here
-{
-	if (!this->button->getStatus()){
-		if(disabledSprite){
+		{
+	if (!this->button->getStatus()) {
+		if (disabledSprite) {
 			disabledSprite->setVisible(true);
-		}
-		else {
+		} else {
 			disabledSprite->setVisible(false);
 		}
-	}
-	else {
-		if(!this->button->getIsActive()){
+	} else {
+		if (!this->button->getIsActive()) {
 			pressSprite->setVisible(false);
-			if(this->button->getValue() == 0){
+			if (this->button->getValue() == 0) {
 				activatedSprite->setVisible(false);
-				if(defaultSprite){
+				if (defaultSprite) {
 					defaultSprite->setVisible(true);
 				}
-			}
-			else {
+			} else {
 				activatedSprite->setVisible(true);
 			}
-		}
-		else {
+		} else {
 			defaultSprite->setVisible(false);
-			if(pressSprite){
+			if (pressSprite) {
 				pressSprite->setVisible(true);
 			}
 		}
 	}
 }
 
-void SneakyButtonSkinnedBase::setContentSize(Size s)
-{
+void SneakyButtonSkinnedBase::setContentSize(CCSize s) {
 	CCLayer::setContentSize(s);
 	defaultSprite->setContentSize(s);
 	//button->setRadius(s.width/2);
 }
 
-void SneakyButtonSkinnedBase::setDefaultSprite(Sprite *aSprite)
-{
-	if(defaultSprite){
-		if(defaultSprite->getParent())
+void SneakyButtonSkinnedBase::setDefaultSprite(CCSprite *aSprite) {
+	if (defaultSprite) {
+		if (defaultSprite->getParent())
 			defaultSprite->getParent()->removeChild(defaultSprite, true);
 		defaultSprite->release();
 	}
 	aSprite->retain();
 	defaultSprite = aSprite; //Check again here
-	if(aSprite){
+	if (aSprite) {
 		this->addChild(defaultSprite, 0);
 
 		this->setContentSize(defaultSprite->getContentSize());
 	}
 }
 
-void SneakyButtonSkinnedBase::setActivatedSprite(Sprite *aSprite)
-{
-	if(activatedSprite){
-		if(activatedSprite->getParent())
+void SneakyButtonSkinnedBase::setActivatedSprite(CCSprite *aSprite) {
+	if (activatedSprite) {
+		if (activatedSprite->getParent())
 			activatedSprite->getParent()->removeChild(activatedSprite, true);
 		activatedSprite->release();
 	}
 	aSprite->retain();
 	activatedSprite = aSprite;
-	if(aSprite){
+	if (aSprite) {
 		this->addChild(activatedSprite, 1);
-		
+
 		this->setContentSize(activatedSprite->getContentSize());
 	}
 }
 
-void SneakyButtonSkinnedBase::setDisabledSprite(Sprite *aSprite)
-{
-	if(disabledSprite){
-		if(disabledSprite->getParent())
+void SneakyButtonSkinnedBase::setDisabledSprite(CCSprite *aSprite) {
+	if (disabledSprite) {
+		if (disabledSprite->getParent())
 			disabledSprite->getParent()->removeChild(disabledSprite, true);
 		disabledSprite->release();
 	}
 	aSprite->retain();
 	disabledSprite = aSprite;
-	if(aSprite){
+	if (aSprite) {
 		this->addChild(disabledSprite, 2);
-		
+
 		this->setContentSize(disabledSprite->getContentSize());
 	}
 }
 
-void SneakyButtonSkinnedBase::setPressSprite(Sprite *aSprite)
-{
-	if(pressSprite){
-		if(pressSprite->getParent())
+void SneakyButtonSkinnedBase::setPressSprite(CCSprite *aSprite) {
+	if (pressSprite) {
+		if (pressSprite->getParent())
 			pressSprite->getParent()->removeChild(pressSprite, true);
 		pressSprite->release();
 	}
 	aSprite->retain();
 	pressSprite = aSprite;
-	if(aSprite){
+	if (aSprite) {
 		this->addChild(pressSprite, 3);
-		
+
 		this->setContentSize(pressSprite->getContentSize());
 	}
 }
 
-void SneakyButtonSkinnedBase::setButton(SneakyButton *aButton)
-{
-	if(button){
-		if(button->getParent())
+void SneakyButtonSkinnedBase::setButton(SneakyButton *aButton) {
+	if (button) {
+		if (button->getParent())
 			button->getParent()->removeChild(button, true);
 		button->release();
 	}
 	aButton->retain();
 	button = aButton;
-	if(aButton){
+	if (aButton) {
 		this->addChild(button, 4);
-		if(defaultSprite)
-			button->setRadius(defaultSprite->getBoundingBox().size.width/2);
+		if (defaultSprite)
+			button->setRadius(defaultSprite->boundingBox().size.width / 2);
 	}
 }

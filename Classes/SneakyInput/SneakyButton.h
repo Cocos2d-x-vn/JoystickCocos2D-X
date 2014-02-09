@@ -3,13 +3,13 @@
 
 #include "cocos2d.h"
 
-class SneakyButton : public cocos2d::Node, public cocos2d::TargetedTouchDelegate
+class SneakyButton : public cocos2d::CCNode, public cocos2d::CCTargetedTouchDelegate
 {
 protected:
-	cocos2d::Point center;
+	cocos2d::CCPoint center;
 	float radiusSq;
 
-	cocos2d::Rect bounds;
+	cocos2d::CCRect bounds;
 
 	CC_SYNTHESIZE(bool, status, Status);
 	CC_SYNTHESIZE_READONLY(bool, active, IsActive);
@@ -23,13 +23,13 @@ protected:
 	//Public methods
 	virtual void onEnterTransitionDidFinish();
 	virtual void onExit();
-	bool initWithRect(cocos2d::Rect rect);
+	bool initWithRect(cocos2d::CCRect rect);
 	void limiter(float delta);
 	void setRadius(float r);
-	virtual bool ccTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event);
-	virtual void ccTouchMoved(cocos2d::Touch *touch, cocos2d::Event *event);
-	virtual void ccTouchEnded(cocos2d::Touch *touch, cocos2d::Event *event);
-	virtual void ccTouchCancelled(cocos2d::Touch *touch, cocos2d::Event *event);
+	virtual bool ccTouchBegan(cocos2d::CCTouch *touch, cocos2d::CCEvent *event);
+	virtual void ccTouchMoved(cocos2d::CCTouch *touch, cocos2d::CCEvent *event);
+	virtual void ccTouchEnded(cocos2d::CCTouch *touch, cocos2d::CCEvent *event);
+	virtual void ccTouchCancelled(cocos2d::CCTouch *touch, cocos2d::CCEvent *event);
 
 	void touchDelegateRelease();
 	void touchDelegateRetain();

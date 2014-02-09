@@ -12,31 +12,33 @@
 #include "../Extras/ParallaxScrollNode.h"
 #include "../Extras/ParallaxNodeExtras.h"
 
-class StageScene : public cocos2d::Layer
-{
+class StageScene: public cocos2d::CCLayer {
 
 public:
-    
-    virtual bool init();
-    static cocos2d::Scene* scene();
-    void update(float dt);
-    void setHUDLayer(Layer *layer);
-    void setBackgroundLayer(ParallaxScrollNode *layer);
-    static StageScene *createWithHUDAndBackGround(Layer *hudLayer, ParallaxScrollNode *backgroundLayer);
+
+	virtual bool init();
+	static cocos2d::CCScene* scene();
+	// a selector callback
+	void menuCloseCallback(CCObject* pSender);
+	void update(float dt);
+	void setHUDLayer(CCLayer *layer);
+	void setBackgroundLayer(ParallaxScrollNode *layer);
+	static StageScene *createWithHUDAndBackGround(CCLayer *hudLayer,
+			ParallaxScrollNode *backgroundLayer);
 
 private:
 
-    ContactListener *contactListener;
-    Player *player;
-    b2World *world;
-    SneakyJoystick *leftJoystick;
-    SneakyButton *action1Button;
-    cocos2d::Layer *hudLayer;
-    ParallaxScrollNode *backgroundLayer;
-    cocos2d::Size worldSize;
-    
-    void updatePhysics(float dt);
-    void createPhysics();
+	ContactListener *contactListener;
+	Player *player;
+	b2World *world;
+	SneakyJoystick *leftJoystick;
+	SneakyButton *action1Button;
+	cocos2d::CCLayer *hudLayer;
+	ParallaxScrollNode *backgroundLayer;
+	cocos2d::CCSize worldSize;
+
+	void updatePhysics(float dt);
+	void createPhysics();
 };
 
 #endif

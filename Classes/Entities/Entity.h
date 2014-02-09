@@ -17,23 +17,23 @@ public:
 
     Entity();
     virtual ~Entity();
-    void setBatchNode(cocos2d::SpriteBatchNode *batchNode);
-    cocos2d::SpriteBatchNode *getBatchNode();
-    cocos2d::Sprite *getSprite();
+    void setBatchNode(cocos2d::CCSpriteBatchNode *batchNode);
+    cocos2d::CCSpriteBatchNode *getBatchNode();
+    cocos2d::CCSprite *getSprite();
     int getDirection();
     int getState();
     virtual int getTag();
 
 protected:
 
-    cocos2d::Sprite *sprite;
-    cocos2d::RepeatForever *actionStateDefault;
-    cocos2d::RepeatForever *actionStateMoving;
-    cocos2d::Animate *animateDefault;
-    cocos2d::Animate *animateMoving;
-    cocos2d::Animation *animationDefault;
-    cocos2d::Animation *animationMoving;
-    cocos2d::SpriteBatchNode *batchNode;
+    cocos2d::CCSprite *sprite;
+    cocos2d::CCRepeatForever *actionStateDefault;
+    cocos2d::CCRepeatForever *actionStateMoving;
+    cocos2d::CCAnimate *animateDefault;
+    cocos2d::CCAnimate *animateMoving;
+    cocos2d::CCAnimation *animationDefault;
+    cocos2d::CCAnimation *animationMoving;
+    cocos2d::CCSpriteBatchNode *batchNode;
 
     int direction;
     b2Body *body;

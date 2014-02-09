@@ -1,5 +1,5 @@
-NDK_ROOT=~/android-ndk-r8e
-APPNAME="JoystickCocos2D"
+APPNAME="Joystick Cocos2D"
+NDK_ROOT="/home/tuanta/setup/android-ndk-r9"
 
 # options
 

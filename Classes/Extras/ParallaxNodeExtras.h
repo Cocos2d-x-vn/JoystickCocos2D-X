@@ -5,7 +5,7 @@
 
 USING_NS_CC;
 
-class ParallaxNodeExtras : public ParallaxNode
+class ParallaxNodeExtras : public CCParallaxNode
 {
 public:
     ParallaxNodeExtras();

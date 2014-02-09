@@ -16,7 +16,7 @@ public:
     CC_SYNTHESIZE(CCPoint, ratio, Ratio);
     CC_SYNTHESIZE(CCPoint, buffer, Buffer);
     CC_SYNTHESIZE(CCNode*, theChild, TheChild);
-    
+
     static ParallaxScrollOffset* scrollWithNode(CCNode *node, CCPoint r, CCPoint p, CCPoint s);
     static ParallaxScrollOffset* scrollWithNode(CCNode *node, CCPoint r, CCPoint p, CCPoint s, CCPoint v);
     ParallaxScrollOffset* initWithNode(CCNode *node, CCPoint r, CCPoint p, CCPoint s, CCPoint v);

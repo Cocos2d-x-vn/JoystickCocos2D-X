@@ -2,40 +2,32 @@
 
 USING_NS_CC;
 
-Entity::Entity()
-{
+Entity::Entity() {
 }
 
-Entity::~Entity()
-{
+Entity::~Entity() {
 }
 
-void Entity::setBatchNode(SpriteBatchNode *batchNode)
-{
-    this->batchNode = batchNode;
+void Entity::setBatchNode(CCSpriteBatchNode *batchNode) {
+	this->batchNode = batchNode;
 }
 
-SpriteBatchNode *Entity::getBatchNode()
-{
-    return batchNode;
+CCSpriteBatchNode *Entity::getBatchNode() {
+	return batchNode;
 }
 
-cocos2d::Sprite *Entity::getSprite()
-{
-    return sprite;
+cocos2d::CCSprite *Entity::getSprite() {
+	return sprite;
 }
 
-int Entity::getDirection()
-{
-    return direction;
+int Entity::getDirection() {
+	return direction;
 }
 
-int Entity::getState()
-{
-    return state;
+int Entity::getState() {
+	return state;
 }
 
-int Entity::getTag()
-{
-    return 0;
+int Entity::getTag() {
+	return 0;
 }
